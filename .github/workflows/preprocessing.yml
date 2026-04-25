@@ -28,7 +28,7 @@ jobs:
 
       - name: Run preprocessing script
         run: |
-          python preprocessing/automate_Nama-siswa.py \
+          python preprocessing/automate_Odi-Elsamas.py \
             --input developer_burnout_raw/developer_burnout.csv \
             --output developer_burnout_preprocessing
 

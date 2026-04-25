@@ -12,8 +12,8 @@ Eksperimen_SML_Odi-Elsamas/
 ├── developer_burnout_raw/
 │   └── developer_burnout.csv        # Dataset mentah
 ├── preprocessing/
-│   ├── Eksperimen_Nama-siswa.ipynb  # Notebook eksperimen (Basic)
-│   └── automate_Nama-siswa.py       # Script otomatisasi (Skilled)
+│   ├── Eksperimen_Odi-Elsamas.ipynb  # Notebook eksperimen (Basic)
+│   └── automate_Odi-Elsamas.py       # Script otomatisasi (Skilled)
 ├── requirements.txt
 └── README.md
 ```

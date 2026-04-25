@@ -1,0 +1,51 @@
+name: Automated Preprocessing Pipeline
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'developer_burnout_raw/**'
+      - 'preprocessing/automate_Nama-siswa.py'
+      - 'requirements.txt'
+  workflow_dispatch:
+
+jobs:
+  preprocessing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run preprocessing script
+        run: |
+          python preprocessing/automate_Nama-siswa.py \
+            --input developer_burnout_raw/developer_burnout.csv \
+            --output developer_burnout_preprocessing
+
+      - name: Verify output files
+        run: |
+          echo "=== Output Files ==="
+          ls -lh developer_burnout_preprocessing/
+          echo ""
+          echo "=== train.csv preview (5 rows) ==="
+          head -6 developer_burnout_preprocessing/train.csv
+          echo ""
+          echo "=== test.csv preview (5 rows) ==="
+          head -6 developer_burnout_preprocessing/test.csv
+
+      - name: Upload preprocessing artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: developer_burnout_preprocessing
+          path: developer_burnout_preprocessing/
+          retention-days: 30
